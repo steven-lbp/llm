@@ -43,4 +43,5 @@ In the backward pass, separate each micro-batch. After the micro backward pass, 
 
 ![image-20250201140811546](image/image-20250201140811546.png)
 
-1233
+- **Deepseek MoE Parrelism**
+
