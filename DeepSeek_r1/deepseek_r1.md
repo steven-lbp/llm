@@ -1,5 +1,5 @@
 ![20250202211854.png](image/20250202211854.png)
-## 1. Load Balancing Strategy
+## 1. Load Balancing Strategy(MoE)
 - high-load experts
 
 The high-load experts are detected based on statistics collected during the online deployment and are adjusted periodically (e.g., every 10 minutes)
@@ -9,6 +9,7 @@ The high-load experts are detected based on statistics collected during the onli
 Redundant experts are copys of high-load experts. In every GPU(total 32), except for 8 experts, there is a redundant expert to make sure every GPU is processing similar amount of token.
 
 ## 2. Multi-head Latent Attention
+The core of MLA is the low-rank joint compression for attention keys and values to reduce Key-Value (KV) cache during inference.
 
 ## 3. Pipeline Parallelism
 ### MoE Parallelism
