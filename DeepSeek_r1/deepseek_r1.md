@@ -40,7 +40,7 @@ O1: PRM, CoT
 
 SFT can not provide negative feedback;
 
-SFT kack of understanding of backward aapabilities;
+SFT lack of understanding of backward aapabilities;
 
 SFT responses in token level, whereas RLHF (Reinforcement Learning with Human Feedback) gives responses at a much broader level, treating the entire text as a whole.
 
