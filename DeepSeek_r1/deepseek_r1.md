@@ -46,8 +46,18 @@ SFT responses in token level, whereas RLHF (Reinforcement Learning with Human Fe
 
 2. Types of RL
 
-PPO ChatGPT(Best)
+- PPO ChatGPT(Best)
 ![](./image/20250204234222.png)
+
+a. Policy Model: The model that we are training
+
+b. Reference Model: Fixed benchmark model, used to caculate the KL Divergence(Prevent excessive changes)
+
+c. Reward Model: Caculate the output of the model is good or bad
+
+d. Value Model: Estimate the long-term rewards of a certain state
+
+
 DPO LLama(Fastest)
 
 GRPO Deepseek(Cheapest)
