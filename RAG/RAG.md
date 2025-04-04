@@ -1,5 +1,14 @@
-## RAG
-### Light RAG
+# RAG
+## Light RAG
+### Why Light RAG
+- Graph-Based Text Indexing: Transforms textual data into a knowledge graph
+- Dual-Level Retrieval System: 
+Low-Level Retrieval and High-Level Retrieval
+- Incremental Update Algorithm: 
+Allows real-time integration of new data into the knowledge graph
+
+### Overall Architecture
+1. 
 ![image-20250201124929335](image/1.png)
 
 `D(.)` : Deduplication
@@ -8,12 +17,14 @@
 
 `R(.)` : Relationship Extraction
 
+2. 
 ![image-20250201124929335](image/2.png)
 
 Entities and relationships are stored in a graph structure for fast and semantically rich retrieval.
 
 Nodes = concepts/entities, edges = relations
 
+3. 
 ![image-20250201124929335](image/3.png)
 
 Given a **user query**, the system retrieves both:
