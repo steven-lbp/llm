@@ -4,6 +4,7 @@
 - PPO：
 
 使用单独的 **Value Model $V(s)$** 预测 baseline → 更通用，但训练复杂，易引入估值误差。
+
 $$A = R - V(s)$$
 
 - GRPO：
