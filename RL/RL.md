@@ -93,7 +93,7 @@ $$
 ### 控制项：KL 散度惩罚
 
 $$
-+ \beta \cdot D_{KL}(\pi_{\theta_{old}} \parallel \pi_\theta)
+ \beta \cdot D_{KL}(\pi_{\theta_{old}} \parallel \pi_\theta)
 $$
 
 **含义**：
