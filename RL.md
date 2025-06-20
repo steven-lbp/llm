@@ -1,10 +1,12 @@
 ## GRPO
-$$\mathcal{L}_{\text{GRPO}}(\theta) = - \frac{1}{G} \sum_{i=1}^{G} \log \pi_\theta(o_i | q) \cdot A_i^G + \beta \cdot D_{\text{KL}}(\pi_{\theta_{\text{old}}} \parallel \pi_\theta)$$
+$$
+ \mathcal{L}_{\text{GRPO}}(\theta) = - \frac{1}{G} \sum_{i=1}^{G} \log \pi_\theta(o_i | q) \cdot A_i^G + \beta \cdot D_{\text{KL}}(\pi_{\theta_{\text{old}}} \parallel \pi_\theta)
+$$
 
 ---
 ### 群体相对优势
 $$
-A_i^G = \frac{R(o_i) - \mu_G}{\sigma_G + \epsilon}
+ A_i^G = \frac{R(o_i) - \mu_G}{\sigma_G + \epsilon}
 $$
 
 **含义**：
@@ -34,7 +36,7 @@ $$
 ### 核心目标项：组内损失
 
 $$
-- \frac{1}{G} \sum_{i=1}^{G} \log \pi_\theta(o_i | q) \cdot A_i^G
+ \frac{1}{G} \sum_{i=1}^{G} \log \pi_\theta(o_i | q) \cdot A_i^G
 $$
 
 **逐层解释**：
