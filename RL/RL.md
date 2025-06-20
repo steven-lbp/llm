@@ -36,7 +36,7 @@ $$
 ## GRPO
 
 $$
- \mathcal{L}_{GRPO}(\theta) = - \frac{1}{G} \sum_{i=1}^{G} \log \pi_\theta(o_i | q) \cdot A_i^G + \beta \cdot D_{KL} (\pi_{\theta_{old}} \parallel \pi_\theta)
+ \mathcal{L}_{\text{GRPO}}(\theta) = - \frac{1}{G} \sum_{i=1}^{G} \log \pi_\theta(o_i | q) \cdot A_i^G + \beta \cdot D_{\text{KL}} (\pi_{\theta_{\text{old}}} \parallel \pi_\theta)
 $$
 
 ### 群体相对优势
@@ -93,7 +93,7 @@ $$
 ### 控制项：KL 散度惩罚
 
 $$
- \beta \cdot D_{KL}(\pi_{\theta_{old}} \parallel \pi_\theta)
+ \beta \cdot D_{\text{KL}}(\pi_{\theta_{\text{old}}} \parallel \pi_\theta)
 $$
 
 **含义**：
