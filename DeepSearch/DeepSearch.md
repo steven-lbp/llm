@@ -59,3 +59,56 @@ MaskSearch introduces difficulty-based curriculum learning:
 - Prompts contain varying numbers of masked tokens.
 
 - The model starts with simpler tasks (fewer masks) and gradually tackles more complex ones (multiple masks), improving stability and reasoning capability.
+
+## Baichuan-Research
+### structured generation with control tokens
+
+```
+algorithm ReSearchInference:
+    input: trained policy_model πθ, new question q
+    prompt = create_prompt(q)
+    output_seq = []
+    current_text = ""
+    done = false
+    while not done:
+        token = policy_model.generate_next_token(current_text)
+        output_seq.append(token)
+        current_text += token
+        if token == "<search>":
+            # gather query until '</search>'
+            search_query = generate_until("</search>")
+            result_text = SEARCH(search_query)
+            output_seq.append("<result>")
+            output_seq.append(result_text)
+            output_seq.append("</result>")
+            current_text += "<result>" + result_text + "</result>"
+        if token == "</answer>" or end_of_text(token):
+            done = true
+    
+    return output_seq  # The final answer is within <answer> ... </answer>
+```
+### Benchmarks
+- `EM:` Exact Match
+
+- `LJ:` Longest Jump
+
+LJ measures whether the model took the correct long path from the problem to the correct answer (rather than guessing).
+
+| Dataset       | Description                                                                                                                                     |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **HotpotQA**  | A widely-used multi-hop QA dataset requiring reasoning across 2+ Wikipedia paragraphs. Includes supporting facts for supervision.               |
+| **2Wiki**     | Entity-centric multi-hop QA built from Wikipedia entity pairs. Focuses on factual relational reasoning.                                         |
+| **MuSiQue**   | Constructed by composing multiple atomic single-hop questions. Tests fine-grained semantic compositional reasoning.                             |
+| **Bamboogle** | A realistic search-based QA dataset that requires triggering external retrieval to answer. Designed to simulate real-world information-seeking. |
+
+>  **ReSearch is trained on only one dataset** (MuSiQue) but achieves **strong generalization** across all four.
+
+### Baseline Methods Compared in ReSearch
+| Baseline     | Retrieval? | Structured Output?               | Reasoning Depth               | RL-Trained?  |
+| ------------ | ---------- | -------------------------------- | ----------------------------- | ------------ |
+| Naive Gen    | No         |  No                              |  None                         |  No          |
+| Naive RAG    | Yes        |  No                              |  Shallow                      |  No          |
+| Iter-RetGen  | Yes        |  Partial (loop)                  |  Deeper                       |  No          |
+| IRCoT        | Yes        |  Yes (interleaved)               |  Deep + precise               |  No          |
+| **ReSearch** | Yes        |  Yes (`<think>`, `<search>`...)  |  Deepest (trained planning)   |  Yes (GRPO)  |
+
