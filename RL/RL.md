@@ -5,14 +5,17 @@
 
 使用单独的 **Value Model $V(s)$** 预测 baseline → 更通用，但训练复杂，易引入估值误差。
 
-$$A = R - V(s)$$
+$$
+A = R - V(s)
+$$
 
 - GRPO：
 
 用同一 prompt 下的多个回答的 **组内平均得分 $\mu_G$** 作为 baseline → 更轻量、更稳定。
-$$A_i^G = \frac{R(o_i) - \mu_G}{\sigma_G + \epsilon}$$
 
-
+$$
+A_i^G = \frac{R(o_i) - \mu_G}{\sigma_G + \epsilon}
+$$
 
 ### 核心直觉
 
@@ -31,12 +34,13 @@ $$A_i^G = \frac{R(o_i) - \mu_G}{\sigma_G + \epsilon}$$
 4. **组内比较自然支持排序学习**，能强化相对优质的生成内容（例如回答、摘要）
 
 ## GRPO
+
 $$
  \mathcal{L}_{\text{GRPO}}(\theta) = - \frac{1}{G} \sum_{i=1}^{G} \log \pi_\theta(o_i | q) \cdot A_i^G + \beta \cdot D_{\text{KL}}(\pi_{\theta_{\text{old}}} \parallel \pi_\theta)
 $$
 
----
 ### 群体相对优势
+
 $$
  A_i^G = \frac{R(o_i) - \mu_G}{\sigma_G + \epsilon}
 $$
@@ -52,6 +56,7 @@ $$
 
 ---
 ### 对数概率
+
 $$
 \log \pi_\theta(o_i \mid q)
 $$
